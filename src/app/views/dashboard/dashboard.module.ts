@@ -8,6 +8,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
+import { InfoComponent } from './tabs/info/info.component';
+import { StepsComponent } from './tabs/steps/steps.component';
+import { SqlfileComponent } from './tabs/sqlfile/sqlfile.component';
+import { PreviewComponent } from './tabs/preview/preview.component';
+import { DiffComponent } from './tabs/diff/diff.component';
+
 @NgModule({
   imports: [
     BsDropdownModule.forRoot(),
@@ -16,6 +22,13 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     DashboardRoutingModule,
     ChartsModule
   ],
-  declarations: [ DashboardComponent ]
+  declarations: [
+    InfoComponent,
+    StepsComponent,
+    SqlfileComponent,
+    PreviewComponent,
+    DiffComponent,
+    DashboardComponent
+  ]
 })
 export class DashboardModule { }
