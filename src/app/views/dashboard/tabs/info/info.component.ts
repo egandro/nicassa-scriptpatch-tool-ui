@@ -1,3 +1,5 @@
+import swal from 'sweetalert2';
+
 const { remote } = require('electron');
 const { dialog } = require('electron').remote;
 
@@ -38,6 +40,23 @@ export class InfoComponent implements OnInit {
       this.fileName = fileName;
     }
 
+  }
+
+  onLoad() {
+    console.log('onLoad');
+  }
+
+  onSave() {
+    console.log('onSave');
+    swal({
+      title: 'Confirmation',
+      text: `My Text`,
+      type: 'warning',
+      showCloseButton: true,
+      showCancelButton: true,
+    }).then((result) => {
+
+    });
   }
 
 }

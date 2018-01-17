@@ -22,11 +22,13 @@
       "styles": [
         "../node_modules/font-awesome/css/font-awesome.css",
         "../node_modules/simple-line-icons/css/simple-line-icons.css",
+        "../node_modules/sweetalert2/dist/sweetalert2.min.css",
         "scss/style.scss"
       ],
       "scripts": [
         "../node_modules/chart.js/dist/Chart.bundle.min.js",
-        "../node_modules/chart.js/dist/Chart.min.js"
+        "../node_modules/chart.js/dist/Chart.min.js",
+        "../node_modules/sweetalert2/dist/sweetalert2.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

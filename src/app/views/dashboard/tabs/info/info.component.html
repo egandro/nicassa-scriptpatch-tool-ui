@@ -23,7 +23,7 @@
     </div><!--/.row-->
   </div>
   <div class="card-footer text-right">
-    <button class="btn btn-success" [disabled]='fileName == null || fileName === undefined || fileName.length == 0' ><i class="fa fa-check"></i> Load</button>
-    <button class="btn btn-danger" [disabled]='fileName == null || fileName === undefined || fileName.length == 0'><i class="fa fa-save"></i> Save</button>
+    <button class="btn btn-success" (click)="onLoad()" [disabled]='fileName == null || fileName === undefined || fileName.length == 0' ><i class="fa fa-check"></i> Load</button>
+    <button class="btn btn-danger" (click)="onSave()" [disabled]='fileName == null || fileName === undefined || fileName.length == 0'><i class="fa fa-save"></i> Save</button>
   </div>
 </div>
