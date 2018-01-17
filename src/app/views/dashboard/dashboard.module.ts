@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { DashboardComponent } from './dashboard.component';
@@ -16,6 +18,7 @@ import { DiffComponent } from './tabs/diff/diff.component';
 
 @NgModule({
   imports: [
+    FormsModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     TabsModule,

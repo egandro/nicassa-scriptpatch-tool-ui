@@ -1,3 +1,29 @@
-<p>
-  info works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <strong>ScriptPatchTool File</strong>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12">
+
+        <div class="form-group">
+          <label class="col-form-label" for="fileName">Filename</label>
+          <div class="controls">
+            <div class="input-group">
+              <input [(ngModel)]="fileName" id="fileName" class="form-control" placeholder="Script Patch Tool Filename"  type="text">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" (click)="onOpenFileLoadDlg()" type="button">...</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div><!--/.row-->
+  </div>
+  <div class="card-footer text-right">
+    <button class="btn btn-success" [disabled]='fileName == null || fileName === undefined || fileName.length == 0' ><i class="fa fa-check"></i> Load</button>
+    <button class="btn btn-danger" [disabled]='fileName == null || fileName === undefined || fileName.length == 0'><i class="fa fa-save"></i> Save</button>
+  </div>
+</div>
