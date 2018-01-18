@@ -1,3 +1,122 @@
-<p>
-  steps works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <strong>Patch Steps</strong>
+  </div>
+  <div class="card-body">
+    <!--/.row-->
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="row">
+            <div class="col-sm-12">
+              <button class="mr-1 btn btn-primary" (click)="onAddStep()"> Add</button>
+              <button class="mr-1 btn btn-primary" (click)="onDeleteStep()"> Delete</button>
+              <button class="mr-1 btn btn-primary" (click)="onCopyStep()"> Copy</button>
+              <button class="mr-1 btn btn-primary" (click)="onPasteStep()"> Paste</button>
+              <button class="mr-1 btn btn-primary" (click)="onMoveUpStep()"> Up</button>
+              <button class="mr-1 btn btn-primary" (click)="onMoveDownStep()"> Down</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-12">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Active</th>
+                  <th>Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    1.
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <label class="checkbox-inline" for="inline-checkbox1">
+                        <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1">
+                      </label>
+                    </div>
+                  </td>
+                  <td>Lorem ipsum dolor sit amet</td>
+                </tr>
+                <tr>
+                  <td>
+                      2.
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <label class="checkbox-inline" for="inline-checkbox2">
+                        <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2">
+                      </label>
+                    </div>
+                  </td>
+                  <td>Lorem ipsum dolor sit amet</td>
+                </tr>
+                <tr>
+                  <td>
+                      3.
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <label class="checkbox-inline" for="inline-checkbox3">
+                        <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3">
+                      </label>
+                    </div>
+                  </td>
+                  <td>Lorem ipsum dolor sit amet</td>
+                </tr>
+                <tr>
+                  <td>
+                      4.
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <label class="checkbox-inline" for="inline-checkbox4">
+                        <input type="checkbox" id="inline-checkbox4" name="inline-checkbox4">
+                      </label>
+                    </div>
+                  </td>
+                  <td>Lorem ipsum dolor sit amet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-12">
+
+            <label for="select">Step #1</label>
+            <select id="select" name="select" class="form-control">
+              <option value="0">-</option>
+              <option value="1">insert on top of file</option>
+              <option value="2">append to end of file</option>
+              <option value="3">insert before</option>
+              <option value="4">insert after</option>
+              <option value="5">replace text</option>
+              <option value="6">delete text</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-12 col-form-label" for="textarea-input-search">Search text</label>
+          <div class="form-group col-sm-12">
+            <div>
+              <textarea id="textarea-input-search" name="textarea-input-search" rows="9" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-12 col-form-label" for="textarea-input-replace">Replace text</label>
+          <div class="form-group col-sm-12">
+            <div>
+              <textarea id="textarea-input-replace" name="textarea-input-replace" rows="9" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

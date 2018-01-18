@@ -71,6 +71,9 @@ const styles = [
 
 //we add all our external scripts we want to load externally, like inserting in our index.html --> like as if it's .angular-cli.json
 const scripts = [
+  "./node_modules/ace-builds/src-min/ace.js",
+  "./node_modules/ace-builds/src-min/mode-sql.js",
+  "./node_modules/ace-builds/src-min/theme-eclipse.js",
 ];
 
 //create file path for each , so we use for our excludes and includes where needed

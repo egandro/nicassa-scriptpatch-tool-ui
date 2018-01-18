@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AceEditorModule } from 'ng2-ace-editor';
+import { NgxDiffModule } from 'ngx-diff/ngx-diff.module';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -23,6 +25,8 @@ import { WorkingSetService } from '../../providers/workingset.service';
   imports: [
     CommonModule,
     FormsModule,
+    AceEditorModule,
+    NgxDiffModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     TabsModule,

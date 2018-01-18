@@ -1,3 +1,30 @@
-<p>
-  preview works!
-</p>
+<div class="card">
+    <div class="card-header">
+      <strong>Patch Preview {{ (!alreadyPatched && !canBePatched) ? ' (equal to the SQL File)' : ''}}</strong>
+    </div>
+    <div class="card-body">
+        <div *ngIf="alreadyPatched" class="row">
+            <div class="form-group col-sm-12">
+                <div class="card-header">
+                    <strong>The File is already patched!</strong>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="canBePatched" class="row">
+            <div class="col-sm-12">
+              <button class="mr-1 btn btn-primary" (click)="onSave()" [disabled]='service.ws == null'> Patch</button>
+              <button class="mr-1 btn btn-primary" (click)="onSaveAs()" [disabled]='service.ws == null'> Save Patch as</button>
+            </div>
+        </div>
+        <div class="row" [ngClass]="{'mt-3' : canBePatched}">
+            <div class="form-group col-sm-12">
+              <div ace-editor
+                [(text)]="sqlPreviewText"
+                [mode]="'sql'"
+                [theme]="'eclipse'"
+                [readOnly]="true"
+                style="min-height: 500px; width:100%; overflow: auto;"></div>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -7,6 +7,8 @@ const { dialog } = require('electron').remote;
 
 import { Component, OnInit } from '@angular/core';
 
+import { TabBasic } from '../tabbasic';
+
 import { WorkingSetService } from '../../../../providers/workingset.service';
 
 @Component({
@@ -14,7 +16,7 @@ import { WorkingSetService } from '../../../../providers/workingset.service';
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss']
 })
-export class InfoComponent implements OnInit {
+export class InfoComponent implements OnInit, TabBasic {
   fileName = '';
 
   constructor(public service: WorkingSetService) {
@@ -31,6 +33,10 @@ export class InfoComponent implements OnInit {
     }
   }
 
+  tabSelected() {
+    console.log('InfoComponent tabSelected');
+  }
+
   onFileNameChanged(fileName: string) {
     console.log('onFileNameChanged', fileName);
 
@@ -43,6 +49,7 @@ export class InfoComponent implements OnInit {
     console.log('onNew');
 
     if (!this.service.isModified()) {
+      this.fileName = '';
       this.service.newWorkingSet();
       return;
     }
@@ -57,6 +64,7 @@ export class InfoComponent implements OnInit {
       if (result.value) {
         setTimeout(() => {
           // wait until the dialog is closed
+          this.fileName = '';
           this.service.newWorkingSet();
         }, 300);
       }

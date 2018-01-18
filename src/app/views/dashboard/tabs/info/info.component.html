@@ -5,24 +5,17 @@
   <div class="card-body">
     <div class="row">
       <div class="col-sm-12">
-        <button class="btn btn-primary" (click)="onNew()"> New</button>
-        <button class="btn btn-primary" (click)="onLoad()"> Load</button>
-        <button class="btn btn-primary" (click)="onSave()" [disabled]='service.ws == null'> Save</button>
-        <button class="btn btn-primary" (click)="onSaveAs()" [disabled]='service.ws == null'> Save as</button>
+        <button class="mr-1 btn btn-primary" (click)="onNew()"> New</button>
+        <button class="mr-1 btn btn-primary" (click)="onLoad()"> Load</button>
+        <button class="mr-1 btn btn-primary" (click)="onSave()" [disabled]='service.ws == null'> Save</button>
+        <button class="mr-1 btn btn-primary" (click)="onSaveAs()" [disabled]='service.ws == null'> Save as</button>
       </div>
     </div>
     <!--/.row-->
     <div class="row">
-      <div class="col-sm-12">
-        <div class="form-group">
-          <label class="col-form-label" for="fileName">Filename</label>
-          <div class="controls">
-            <div class="input-group">
-              <input [(ngModel)]="fileName" id="fileName" class="form-control" placeholder="Script Patch Tool Filename" type="text"
-                readonly>
-            </div>
-          </div>
-        </div>
+      <label class="col-sm-12 col-form-label" for="fileName">Filename</label>
+      <div class="form-group col-sm-12">
+          <input [(ngModel)]="fileName" id="fileName" class="form-control" placeholder="Script Patch Tool Filename" type="text" readonly>
       </div>
     </div>
     <!--/.row-->

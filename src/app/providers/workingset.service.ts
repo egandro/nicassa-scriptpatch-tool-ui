@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { WorkingSet, ScriptPatch, ScriptPatchTool } from 'nicassa-scriptpatch-tool';
+import { WorkingSet, PatchStepType, PatchStep, ScriptPatch, ScriptPatchTool } from 'nicassa-scriptpatch-tool';
 
 
 @Injectable()
@@ -103,12 +103,20 @@ export class WorkingSetService {
   private createScriptPatch(): ScriptPatch {
     console.log('createScriptPatch');
 
+    const patchStep: PatchStep = {
+      comment: '<PatchStep>',
+      stepType: PatchStepType.STEP_INSERT_ON_TOP_OF_FILE,
+      searchText: null,
+      replaceText: null,
+      active: true
+    }
+
     const result: ScriptPatch = {
       sqlFileName: '',
       relativePath: true,
       comment: '',
       createBranding: true,
-      stepList: []
+      stepList: [patchStep]
     }
     return result;
   }

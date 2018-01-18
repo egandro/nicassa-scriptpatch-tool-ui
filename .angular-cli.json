@@ -28,7 +28,10 @@
       "scripts": [
         "../node_modules/chart.js/dist/Chart.bundle.min.js",
         "../node_modules/chart.js/dist/Chart.min.js",
-        "../node_modules/sweetalert2/dist/sweetalert2.min.js"
+        "../node_modules/sweetalert2/dist/sweetalert2.min.js",
+        "../node_modules/ace-builds/src-min/ace.js",
+        "../node_modules/ace-builds/src-min/mode-sql.js",
+        "../node_modules/ace-builds/src-min/theme-eclipse.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

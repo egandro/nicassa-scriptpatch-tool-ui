@@ -1,3 +1,10 @@
-<p>
-  diff works!
-</p>
+<div class="card">
+    <div class="card-header">
+      <strong>Diff</strong>
+    </div>
+    <div class="card-body">
+        <div class="row"  *ngIf="sqlText && sqlPreviewText">
+            <inline-diff [oldText]="sqlText" [newText]="sqlPreviewText" [lineContextSize]="4"></inline-diff>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,18 @@
-<p>
-  sqlfile works!
-</p>
+<div class="card">
+    <div class="card-header">
+      <strong>SQL File</strong>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <div ace-editor
+                  [(text)]="sqlText"
+                  [mode]="'sql'"
+                  [theme]="'eclipse'"
+                  [readOnly]="true"
+                  style="min-height: 500px; width:100%; overflow: auto;">
+               </div>
+            </div>
+        </div>
+    </div>
+  </div>
