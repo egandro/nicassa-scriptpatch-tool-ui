@@ -1,15 +1,14 @@
-const { remote } = require('electron');
-const { fs } = remote.require('fs');
-const { path } = remote.require('path');
+const fs = require('fs');
+const path = require('path');
 
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { WorkingSet, ScriptPatch, ScriptPatchTool, IOAbstraction } from 'nicassa-scriptpatch-tool';
+import { WorkingSet, ScriptPatch, ScriptPatchTool } from 'nicassa-scriptpatch-tool';
+
 
 @Injectable()
 export class WorkingSetService {
   ws: WorkingSet;
   oldData: string;
-  io: IOAbstraction = new ElectronAbstraction();
   @Output() wsChanged: EventEmitter<WorkingSet> = new EventEmitter();
 
   constructor() {
@@ -27,7 +26,7 @@ export class WorkingSetService {
     this.wsChanged.emit(this.ws);
   }
 
-  needSave(): boolean {
+  isModified(): boolean {
     console.log('needSave');
 
     if (this.oldData == null || this.oldData === undefined) {
@@ -38,21 +37,23 @@ export class WorkingSetService {
     }
 
     const data = JSON.stringify(this.ws);
-    const result = this.oldData === data;
+    const result = this.oldData !== data;
+
     return result;
   }
 
   save(): string {
     console.log('save');
 
-    let result = '';
+    let result = null;
     if (this.ws == null || this.ws === undefined) {
       result = 'No workingset!';
       return result;
     }
 
     try {
-      ScriptPatchTool.save(this.ws, this.io);
+      ScriptPatchTool.save(this.ws);
+      this.oldData = JSON.stringify(this.ws);
     } catch (err) {
       result = err;
     }
@@ -63,7 +64,7 @@ export class WorkingSetService {
   saveAs(fileName: string): string {
     console.log('saveAs', fileName);
 
-    let result = '';
+    let result = null;
     if (this.ws == null || this.ws === undefined) {
       this.ws = {
         fileName: fileName,
@@ -73,7 +74,7 @@ export class WorkingSetService {
     }
 
     try {
-      ScriptPatchTool.save(this.ws, this.io);
+      ScriptPatchTool.save(this.ws);
     } catch (err) {
       result = err;
     }
@@ -84,12 +85,12 @@ export class WorkingSetService {
   load(fileName: string): string {
     console.log('load', fileName);
 
-    let result = '';
+    let result = null;
     this.ws = null
     this.oldData = null;
 
     try {
-      this.ws = ScriptPatchTool.load(fileName, this.io);
+      this.ws = ScriptPatchTool.load(fileName);
       this.oldData = JSON.stringify(this.ws);
     } catch (err) {
       result = err;
@@ -113,24 +114,3 @@ export class WorkingSetService {
   }
 }
 
-class ElectronAbstraction implements IOAbstraction {
-  public readFileSync(fileName: string, encoding: string): string {
-    return fs.readFileSync(fileName, encoding);
-  }
-
-  public writeFileSync(fileName: string, data: any, encoding: string): void {
-    return fs.writeFileSync(fileName, data, { encoding: encoding });
-  }
-
-  public normalize(fileName: string): string {
-    return path.normalize(fileName);
-  }
-
-  public dirname(fileName: string): string {
-    return path.dirname(fileName);
-  }
-
-  public existsSync(fileName: string): boolean {
-    return fs.existsSync(fileName);
-  }
-}

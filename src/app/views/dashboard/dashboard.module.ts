@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -20,6 +21,7 @@ import { WorkingSetService } from '../../providers/workingset.service';
 
 @NgModule({
   imports: [
+    CommonModule,
     FormsModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),

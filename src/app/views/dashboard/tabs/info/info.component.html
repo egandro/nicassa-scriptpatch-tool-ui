@@ -5,27 +5,66 @@
   <div class="card-body">
     <div class="row">
       <div class="col-sm-12">
-
+        <button class="btn btn-primary" (click)="onNew()"> New</button>
+        <button class="btn btn-primary" (click)="onLoad()"> Load</button>
+        <button class="btn btn-primary" (click)="onSave()" [disabled]='service.ws == null'> Save</button>
+        <button class="btn btn-primary" (click)="onSaveAs()" [disabled]='service.ws == null'> Save as</button>
+      </div>
+    </div>
+    <!--/.row-->
+    <div class="row">
+      <div class="col-sm-12">
         <div class="form-group">
           <label class="col-form-label" for="fileName">Filename</label>
           <div class="controls">
             <div class="input-group">
-              <input [(ngModel)]="fileName" id="fileName" class="form-control" placeholder="Script Patch Tool Filename"  type="text">
+              <input [(ngModel)]="fileName" id="fileName" class="form-control" placeholder="Script Patch Tool Filename" type="text"
+                readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.row-->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="col-form-label" for="sqlFileName">SQL File</label>
+          <div class="controls">
+            <div class="input-group">
+              <input [(ngModel)]="service?.ws?.scriptPatch.sqlFileName" id="sqlFileName" class="form-control" placeholder="SQL Filename"
+                type="text" [disabled]='service.ws == null'>
               <span class="input-group-btn">
-                <button class="btn btn-secondary" (click)="onOpenFileLoadDlg()" type="button">...</button>
+                <button class="btn btn-secondary" (click)="onOpenSqlFileLoadDlg()" type="button"  [disabled]='service.ws == null'>...</button>
               </span>
             </div>
           </div>
         </div>
-
-
       </div>
-    </div><!--/.row-->
-  </div>
-  <div class="card-footer text-right">
-    <button class="btn btn-primary" (click)="onNew()"> <i class="fa fa-check"></i> New</button>
-    <button class="btn btn-success" (click)="onLoad()" [disabled]='fileName == null || fileName === undefined || fileName.length == 0' ><i class="fa fa-check"></i> Load</button>
-    <button class="btn btn-danger" (click)="onSave()" [disabled]='fileName == null || fileName === undefined || fileName.length == 0'><i class="fa fa-save"></i> Save</button>
-    <button class="btn btn-danger" (click)="onSaveAs()" [disabled]='fileName == null || fileName === undefined || fileName.length == 0'><i class="fa fa-save"></i> Save as</button>
+    </div>
+    <!--/.row-->
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <label class="checkbox-inline" for="inline-checkbox1">
+          <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" [(ngModel)]="service?.ws?.scriptPatch.relativePath"
+            [disabled]='service.ws == null'> Relative SQL Path
+        </label>
+        <label class="checkbox-inline" for="inline-checkbox2">
+          <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" [(ngModel)]="service?.ws?.scriptPatch.createBranding"
+            [disabled]='service.ws == null'> Brand SQL File
+        </label>
+      </div>
+    </div>
+    <!--/.row-->
+    <div class="row">
+      <label class="col-sm-12 col-form-label" for="textarea-input">Comment</label>
+      <div class="form-group col-sm-12">
+        <div>
+          <textarea id="textarea-input" name="textarea-input" [(ngModel)]="service?.ws?.scriptPatch.comment" rows="9" class="form-control"
+            placeholder="Comment..." [disabled]='service.ws == null'></textarea>
+        </div>
+      </div>
+    </div>
+    <!--/.row-->
   </div>
 </div>

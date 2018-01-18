@@ -27,6 +27,10 @@
       "dom"
     ]
   },
+  "include": [
+    "src/**/*.ts",
+    "node_modules/nicassa-scriptpatch-tool/index.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
