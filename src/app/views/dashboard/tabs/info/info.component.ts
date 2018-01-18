@@ -5,6 +5,8 @@ const { dialog } = require('electron').remote;
 
 import { Component, OnInit } from '@angular/core';
 
+import { WorkingSetService } from '../../../../providers/workingset.service';
+
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
@@ -13,9 +15,12 @@ import { Component, OnInit } from '@angular/core';
 export class InfoComponent implements OnInit {
   fileName = '';
 
-  constructor() { }
+  constructor(public service: WorkingSetService) {
+    console.log('InfoComponent ctor');
+  }
 
   ngOnInit() {
+    console.log('ngOnInit');
   }
 
   onOpenFileLoadDlg() {
@@ -42,12 +47,18 @@ export class InfoComponent implements OnInit {
 
   }
 
+  onNew() {
+    console.log('onNew');
+    this.service.newWorkingSet();
+  }
+
   onLoad() {
     console.log('onLoad');
   }
 
   onSave() {
     console.log('onSave');
+
     swal({
       title: 'Confirmation',
       text: `My Text`,

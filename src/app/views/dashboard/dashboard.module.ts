@@ -16,6 +16,8 @@ import { SqlfileComponent } from './tabs/sqlfile/sqlfile.component';
 import { PreviewComponent } from './tabs/preview/preview.component';
 import { DiffComponent } from './tabs/diff/diff.component';
 
+import { WorkingSetService } from '../../providers/workingset.service';
+
 @NgModule({
   imports: [
     FormsModule,
@@ -32,6 +34,9 @@ import { DiffComponent } from './tabs/diff/diff.component';
     PreviewComponent,
     DiffComponent,
     DashboardComponent
-  ]
+  ],
+  providers: [
+    WorkingSetService
+  ],
 })
 export class DashboardModule { }

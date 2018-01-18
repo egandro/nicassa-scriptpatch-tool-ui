@@ -3,31 +3,39 @@
     <div class="col-md-12 mb-12">
       <!-- Nav tabs -->
       <tabset>
-        <tab>
+        <tab [active]="tabs[0].active" (select)="tabSelected(tabs[0], true)">
           <ng-template tabHeading>
             <i class="icon-info"></i> Info
           </ng-template>
           <app-info></app-info>
         </tab>
-        <tab>
+        <tab [active]="tabs[1].active" (select)="tabSelected(tabs[1], true)"
+             [disabled]="service.ws == null || service.ws == undefined"
+             customClass="{{ (service.ws == null || service.ws == undefined) ? 'tab-disabled' : null}}">
             <ng-template tabHeading>
               <i class="icon-list"></i> Steps
             </ng-template>
             <app-steps></app-steps>
         </tab>
-        <tab>
+        <tab [active]="tabs[2].active" (select)="tabSelected(tabs[2], true)"
+             [disabled]="service.ws == null || service.ws == undefined"
+             customClass="{{ (service.ws == null || service.ws == undefined) ? 'tab-disabled' : null}}">
             <ng-template tabHeading>
               <i class="icon-doc"></i> SQL File
             </ng-template>
             <app-sqlfile></app-sqlfile>
         </tab>
-        <tab>
+        <tab [active]="tabs[3].active" (select)="tabSelected(tabs[3], true)"
+             [disabled]="service.ws == null || service.ws == undefined"
+             customClass="{{ (service.ws == null || service.ws == undefined) ? 'tab-disabled' : null}}">
             <ng-template tabHeading>
               <i class="icon-share"></i> Preview
             </ng-template>
             <app-preview></app-preview>
         </tab>
-        <tab>
+        <tab [active]="tabs[4].active" (select)="tabSelected(tabs[4], true)"
+             [disabled]="service.ws == null || service.ws == undefined"
+             customClass="{{ (service.ws == null || service.ws == undefined) ? 'tab-disabled' : null}}">
             <ng-template tabHeading>
               <i class="icon-control-pause"></i> Diff
             </ng-template>
