@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-sm-12">
+            <div class="col-sm-12"  style="height: 500px; overflow-y: auto;">
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -27,57 +27,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    1.
+                <tr *ngFor="let item of service?.ws?.scriptPatch?.stepList; let i = index" [attr.data-index]="i" [ngClass]="{'selected-row' : item == selectedStep}">
+                  <td  (click)="onRowClicked(item);">
+                    {{i + 1}}.
                   </td>
                   <td>
                     <div class="form-group">
-                      <label class="checkbox-inline" for="inline-checkbox1">
-                        <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1">
+                      <label class="checkbox-inline" for="inline-checkbox">
+                        <input (change)="onStepActiveToogled(item)" type="checkbox" id="inline-checkbox" name="inline-checkbox" [checked]="item.active" >
                       </label>
                     </div>
                   </td>
-                  <td>Lorem ipsum dolor sit amet</td>
-                </tr>
-                <tr>
-                  <td>
-                      2.
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <label class="checkbox-inline" for="inline-checkbox2">
-                        <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2">
-                      </label>
-                    </div>
-                  </td>
-                  <td>Lorem ipsum dolor sit amet</td>
-                </tr>
-                <tr>
-                  <td>
-                      3.
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <label class="checkbox-inline" for="inline-checkbox3">
-                        <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3">
-                      </label>
-                    </div>
-                  </td>
-                  <td>Lorem ipsum dolor sit amet</td>
-                </tr>
-                <tr>
-                  <td>
-                      4.
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <label class="checkbox-inline" for="inline-checkbox4">
-                        <input type="checkbox" id="inline-checkbox4" name="inline-checkbox4">
-                      </label>
-                    </div>
-                  </td>
-                  <td>Lorem ipsum dolor sit amet</td>
+                  <td  (click)="onRowClicked(item);">{{item.comment}}</td>
                 </tr>
               </tbody>
             </table>
@@ -86,10 +47,10 @@
       </div>
       <div class="col-sm-8">
         <div class="row">
-          <div class="col-sm-12">
-
-            <label for="select">Step #1</label>
-            <select id="select" name="select" class="form-control">
+          <div *ngIf="selectedStep" class="col-sm-12">
+            <label for="select"><strong>Step {{selectedStepIndex+1}}.</strong> {{ selectedStep?.comment ? ' - ' + selectedStep?.comment : ''}}</label>
+            <select (change)="setSelectedStep(selectedStep)" id="select" name="select" class="form-control"
+              [(ngModel)]="selectedStep.stepType" [disabled]='!selectedStep.active'>
               <option value="0">-</option>
               <option value="1">insert on top of file</option>
               <option value="2">append to end of file</option>
@@ -100,20 +61,29 @@
             </select>
           </div>
         </div>
-        <div class="row">
+        <div *ngIf="searchVisible && selectedStep" class="row">
           <label class="col-sm-12 col-form-label" for="textarea-input-search">Search text</label>
           <div class="form-group col-sm-12">
-            <div>
-              <textarea id="textarea-input-search" name="textarea-input-search" rows="9" class="form-control"></textarea>
-            </div>
+              <div ace-editor
+                [(text)]="selectedStep.searchText"
+                [mode]="'sql'"
+                [theme]="'eclipse'"
+                [readOnly]="!selectedStep.active"
+                style="width:100%; overflow: auto;"
+                [ngStyle]="{'min-height': replaceVisible ? '200px' : '450px'}">
+              </div>
           </div>
         </div>
-        <div class="row">
+        <div *ngIf="replaceVisible && selectedStep" class="row">
           <label class="col-sm-12 col-form-label" for="textarea-input-replace">Replace text</label>
           <div class="form-group col-sm-12">
-            <div>
-              <textarea id="textarea-input-replace" name="textarea-input-replace" rows="9" class="form-control"></textarea>
-            </div>
+              <div ace-editor
+                [(text)]="selectedStep.replaceText"
+                [mode]="'sql'"
+                [theme]="'eclipse'"
+                [readOnly]="!selectedStep.active"
+                style="min-height: 200px; width:100%; overflow: auto;">
+              </div>
           </div>
         </div>
       </div>

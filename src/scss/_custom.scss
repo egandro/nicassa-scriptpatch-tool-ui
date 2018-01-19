@@ -2,3 +2,7 @@
 .tab-disabled {
   background-color: $navbar-disabled-color;
 }
+
+.selected-row {
+  background-color: theme-color("primary") !important;
+}

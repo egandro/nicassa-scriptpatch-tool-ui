@@ -92,6 +92,7 @@ export class WorkingSetService {
     try {
       this.ws = ScriptPatchTool.load(fileName);
       this.oldData = JSON.stringify(this.ws);
+      this.wsChanged.emit(this.ws);
     } catch (err) {
       result = err;
     }
