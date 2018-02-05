@@ -37,6 +37,23 @@ export class InfoComponent implements OnInit, TabBasic {
     console.log('InfoComponent tabSelected');
   }
 
+  onRelativePathClicked() {
+    console.log('onRelativePathClicked');
+    if (this.service.ws == null || this.service.ws.fileName == null || this.service.ws.scriptPatch == null) {
+      return;
+    }
+    const relativePath = !this.service.ws.scriptPatch.relativePath;
+
+    if (relativePath) {
+      this.service.ws.scriptPatch.sqlFileName = path.basename(this.service.ws.scriptPatch.sqlFileName);
+    } else {
+      const jsonPath = path.dirname(this.service.ws.fileName);
+      const sqlFileName = path.basename(this.service.ws.scriptPatch.sqlFileName);
+      this.service.ws.scriptPatch.sqlFileName = path.normalize(path.join(jsonPath, sqlFileName));
+    }
+
+  }
+
   onFileNameChanged(fileName: string) {
     console.log('onFileNameChanged', fileName);
 
@@ -136,21 +153,13 @@ export class InfoComponent implements OnInit, TabBasic {
   onSaveAs() {
     console.log('onSaveAs');
 
-    if (this.service.ws == null) {
-      return;
-    }
-
     const fileName = this.showSaveDialog();
     if (fileName == null || fileName === undefined) {
       return;
     }
     this.fileName = fileName;
-    this.service.newWorkingSet();
-    if (this.service.ws) {
-      this.service.ws.fileName = fileName;
-    }
 
-    const err = this.service.save();
+    const err = this.service.saveAs(fileName);
     if (err) {
       swal({
         title: 'Error',

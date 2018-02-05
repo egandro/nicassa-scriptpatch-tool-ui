@@ -9,11 +9,11 @@
         <div class="row">
             <div class="col-sm-12">
               <button class="mr-1 btn btn-primary" (click)="onAddStep()"> Add</button>
-              <button class="mr-1 btn btn-primary" (click)="onDeleteStep()"> Delete</button>
-              <button class="mr-1 btn btn-primary" (click)="onCopyStep()"> Copy</button>
-              <button class="mr-1 btn btn-primary" (click)="onPasteStep()"> Paste</button>
-              <button class="mr-1 btn btn-primary" (click)="onMoveUpStep()"> Up</button>
-              <button class="mr-1 btn btn-primary" (click)="onMoveDownStep()"> Down</button>
+              <button class="mr-1 btn btn-primary" (click)="onDeleteStep()" [disabled]='selectedStep == null'> Delete</button>
+              <button class="mr-1 btn btn-primary" (click)="onCopyStep()" [disabled]='selectedStep == null' > Copy</button>
+              <button class="mr-1 btn btn-primary" (click)="onPasteStep()" [disabled]='service.ws == null || service.clipboard == null'> Paste</button>
+              <button class="mr-1 btn btn-primary" (click)="onMoveUpStep()" [disabled]='selectedStep == null'> Up</button>
+              <button class="mr-1 btn btn-primary" (click)="onMoveDownStep()" [disabled]='selectedStep == null'> Down</button>
             </div>
         </div>
         <div class="row mt-3">
@@ -21,15 +21,15 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Active</th>
-                  <th>Comment</th>
+                  <th style="width: 25px;" >#</th>
+                  <th style="width: 50px;">Active</th>
+                  <th >Comment</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of service?.ws?.scriptPatch?.stepList; let i = index" [attr.data-index]="i" [ngClass]="{'selected-row' : item == selectedStep}">
                   <td  (click)="onRowClicked(item);">
-                    {{i + 1}}.
+                    <strong>{{i + 1}}.</strong>
                   </td>
                   <td>
                     <div class="form-group">
@@ -46,9 +46,15 @@
         </div>
       </div>
       <div class="col-sm-8">
-        <div class="row">
-          <div *ngIf="selectedStep" class="col-sm-12">
-            <label for="select"><strong>Step {{selectedStepIndex+1}}.</strong> {{ selectedStep?.comment ? ' - ' + selectedStep?.comment : ''}}</label>
+        <div *ngIf="selectedStep" class="row">
+            <label for="text-comment"><strong>Step {{selectedStepIndex+1}}.</strong></label>
+            <div class="form-group col-md-12">
+              <input type="text" id="text-comment" name="text-comment" class="form-control" placeholder="Step comment"
+              [(ngModel)]="selectedStep.comment" [disabled]='!selectedStep.active' >
+            </div>
+        </div>
+        <div *ngIf="selectedStep" class="row">
+          <div  class="col-sm-12">
             <select (change)="setSelectedStep(selectedStep)" id="select" name="select" class="form-control"
               [(ngModel)]="selectedStep.stepType" [disabled]='!selectedStep.active'>
               <option value="0">-</option>
@@ -70,7 +76,7 @@
                 [theme]="'eclipse'"
                 [readOnly]="!selectedStep.active"
                 style="width:100%; overflow: auto;"
-                [ngStyle]="{'min-height': replaceVisible ? '200px' : '450px'}">
+                [ngStyle]="{'min-height': replaceVisible ? '190px' : '430px'}">
               </div>
           </div>
         </div>
@@ -82,7 +88,7 @@
                 [mode]="'sql'"
                 [theme]="'eclipse'"
                 [readOnly]="!selectedStep.active"
-                style="min-height: 200px; width:100%; overflow: auto;">
+                style="min-height: 190px; width:100%; overflow: auto;">
               </div>
           </div>
         </div>

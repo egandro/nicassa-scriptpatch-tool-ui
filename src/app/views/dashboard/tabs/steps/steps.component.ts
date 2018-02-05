@@ -38,26 +38,37 @@ export class StepsComponent implements OnInit, TabBasic {
 
   onAddStep() {
     console.log('onAddStep');
+    const newStep = this.service.addStep(this.selectedStep);
+    this.setSelectedStep(newStep);
   }
 
   onDeleteStep() {
     console.log('onDeleteStep');
+    const newStep = this.service.deleteStep(this.selectedStep);
+    this.setSelectedStep(newStep);
   }
 
   onCopyStep() {
     console.log('onCopyStep');
+    this.service.copyStep(this.selectedStep);
   }
 
   onPasteStep() {
     console.log('onPasteStep');
+    const newStep = this.service.pasteStep(this.selectedStep);
+    this.setSelectedStep(newStep);
   }
 
   onMoveUpStep() {
     console.log('onMoveUpStep');
+    const newStep = this.service.moveUpStep(this.selectedStep);
+    this.setSelectedStep(newStep);
   }
 
   onMoveDownStep() {
     console.log('onMoveDownStep');
+    const newStep = this.service.moveDownStep(this.selectedStep);
+    this.setSelectedStep(newStep);
   }
 
   onRowClicked(step: PatchStep) {
@@ -76,7 +87,14 @@ export class StepsComponent implements OnInit, TabBasic {
     this.selectedStep = step;
     this.selectedStepIndex = this.service.ws.scriptPatch.stepList.indexOf(step);
 
-    switch (Number(step.stepType)) {
+    if (step == null || step === undefined) {
+      this.searchVisible = false;
+      this.replaceVisible = false;
+      return;
+    }
+
+    step.stepType = Number(step.stepType);
+    switch (step.stepType) {
       case PatchStepType.STEP_DELETE_TEXT:
       case PatchStepType.STEP_INSERT_ON_TOP_OF_FILE:
       case PatchStepType.STEP_APPEND_TO_END_OF_FILE:

@@ -39,7 +39,7 @@
     <div class="row">
       <div class="form-group col-sm-12">
         <label class="checkbox-inline" for="inline-checkbox1">
-          <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" [(ngModel)]="service?.ws?.scriptPatch.relativePath"
+          <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" (click)="onRelativePathClicked()" [(ngModel)]="service?.ws?.scriptPatch.relativePath"
             [disabled]='service.ws == null'> Relative SQL Path
         </label>
         <label class="checkbox-inline" for="inline-checkbox2">
