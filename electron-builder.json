@@ -10,6 +10,9 @@
       "portable"
     ]
   },
+  "nsis": {
+    "oneClick": false
+  },
   "mac": {
     "icon": "dist/favicon",
     "target": [
