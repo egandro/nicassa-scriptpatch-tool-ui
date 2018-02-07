@@ -11,4 +11,4 @@
 
 # Current release
 
-* Win64 (Setup): https://github.com/egandro/nicassa-scriptpatch-tool-ui/releases/download/1.0.1/nicassa-scriptpatch-tool%20Setup%201.0.1.exe
+* Win64 (Setup): https://github.com/egandro/nicassa-scriptpatch-tool-ui/releases/download/1.0.1/nicassa-scriptpatch-tool.Setup.1.0.1.exe
